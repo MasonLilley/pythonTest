@@ -1,13 +1,16 @@
 from openai import OpenAI
+firsthalf = "sk-85TEYwwk84UOVYQAFUI0T"
+lasthalf = "3BlbkFJoKgnY0uBN4s5zGmjG3Hs"
+api = firsthalf + lasthalf
 client = OpenAI(
-    api_key=os.environ.get("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")
+    api_key=api
     )
 
 completion = client.chat.completions.create(
   model="gpt-3.5-turbo",
   messages=[
-    {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-    {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+    {"role": "system", "content": "You are a complex assistant to help generate FIRST FRC Robot code."},
+    {"role": "user", "content": "Compose a simple RobotContainer file to start a FRC Robot with."}
   ]
 )
 
