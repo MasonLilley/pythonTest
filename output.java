@@ -1,21 +1,25 @@
-package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.TimedRobot;
+// TankDrivetrainSubsystem.java
 
-public class RobotContainer {
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-    private final Joystick joystick;
+public class TankDrivetrainSubsystem {
+    private final SpeedControllerGroup leftMotors;
+    private final SpeedControllerGroup rightMotors;
+    private final DifferentialDrive differentialDrive;
 
-    public RobotContainer() {
-        joystick = new Joystick(0);
+    public TankDrivetrainSubsystem(SpeedControllerGroup leftMotors, SpeedControllerGroup rightMotors) {
+        this.leftMotors = leftMotors;
+        this.rightMotors = rightMotors;
+        differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
     }
 
-    public Joystick getJoystick() {
-        return joystick;
+    public void tankDrive(double leftSpeed, double rightSpeed) {
+        differentialDrive.tankDrive(leftSpeed, rightSpeed);
     }
 
-    public void configureButtonBindings() {
-        // Add button bindings here to control the robot
+    public void stop() {
+        differentialDrive.stopMotor();
     }
 }
